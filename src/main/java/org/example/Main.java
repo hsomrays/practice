@@ -8,6 +8,7 @@ public class Main {
         DBFunctions db = new DBFunctions();
         Connection connection = db.connect_to_db("DB_RECORDING_STUDIO", "postgres", "123");
         //db.createTable(connection, "Bobobo");
+        //db.deleteTable(connection, "Bobobo");
         //db.readTable(connection,"artist");
         //db.updateTable(connection, "song", "title", "Bobobo sound", 6 );
     }
