@@ -41,7 +41,7 @@ public class Main {
                     System.out.println("Error. Try again");
             }
             System.out.println("12dwedewd3");
-            System.out.println("123");
+            System.out.println("12wdw3");
             System.out.println("123");
             System.out.println("1wdwedwe23");
             System.out.println("1wdwd23");
