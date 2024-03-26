@@ -69,14 +69,24 @@ public class DBFunctions {
             e.printStackTrace();
         }
     }
-    /*    public void updateTable(Connection connection, String table_name) throws SQLException {
-        Statement statement = connection.createStatement();
+    public void updateTable(Connection connection, String table_name, String columnName, Object newValue, int recordId) {
         try {
-            String sql = "update table public." + table_name + ";";
-            statement.executeUpdate(sql);
-            System.out.println("Table deleted");
-        }catch (Exception e){
-            System.out.println(e);
+            String sql = "UPDATE " + table_name + " SET " + columnName + " = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, newValue);
+            statement.setInt(2, recordId);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Параметр " + columnName + " успешно обновлен.");
+            } else {
+                System.out.println("Запись с указанным идентификатором не найдена.");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }*/
+    }
 }
