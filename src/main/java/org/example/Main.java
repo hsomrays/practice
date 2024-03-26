@@ -40,6 +40,14 @@ public class Main {
                 default:
                     System.out.println("Error. Try again");
             }
+            System.out.println("123");
+            System.out.println("123");
+            System.out.println("123");
+            System.out.println("123");
+            System.out.println("123");
+            System.out.println("123");
+            System.out.println("123");
         }
+
     }
 }
