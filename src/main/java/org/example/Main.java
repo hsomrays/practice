@@ -21,34 +21,34 @@ public class Main {
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
 
-            String table_name;
+            String tableName;
             switch (choice) {
                 case 1:
                     System.out.println("Enter the table name you want to create: ");
-                    table_name = scanner.nextLine();
-                    db.createTable(connection, table_name);
+                    tableName = scanner.nextLine();
+                    db.createTable(connection, tableName);
                     break;
                 case 2:
                     System.out.println("Enter the table name you want to read: ");
-                    table_name = scanner.nextLine();
-                    db.readTable(connection, table_name);
+                    tableName = scanner.nextLine();
+                    db.readTable(connection, tableName);
                     break;
                 case 3:
                     System.out.println("Enter the table name you want to update: ");
-                    table_name = scanner.nextLine();
+                    tableName = scanner.nextLine();
                     System.out.println("Enter the column name you want to update: ");
-                    String column_name = scanner.nextLine();
+                    String columnName = scanner.nextLine();
                     System.out.println("Enter the record id you want to update: ");
-                    int record_id = scanner.nextInt();
+                    int recordId = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
                     System.out.println("Enter new value for the field: ");
-                    String new_value = scanner.nextLine();
-                    db.updateTable(connection, table_name, column_name, new_value, record_id);
+                    String newValue = scanner.nextLine();
+                    db.updateTable(connection, tableName, columnName, newValue, recordId);
                     break;
                 case 4:
                     System.out.println("Enter table name you want to delete: ");
-                    table_name = scanner.nextLine();
-                    db.deleteTable(connection, table_name);
+                    tableName = scanner.nextLine();
+                    db.deleteTable(connection, tableName);
                     break;
                 case 0:
                     // Выход из программы
