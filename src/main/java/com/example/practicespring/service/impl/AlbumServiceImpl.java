@@ -19,4 +19,9 @@ public class AlbumServiceImpl implements AlbumService {
         Album savedAlbum = albumRepository.save(album);
         return AlbumMapper.mapToAlbumDto(savedAlbum);
     }
+
+    @Override
+    public AlbumDto getAlbumById(Long albumId) {
+        return null;
+    }
 }
