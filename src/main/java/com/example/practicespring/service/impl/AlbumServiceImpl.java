@@ -41,6 +41,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public AlbumDto updateAlbum(Long albumId, AlbumDto updatedAlbum) {
+
         Album album = albumRepository.findById(albumId).orElseThrow(
                 () -> new ResourceNotFoundException("Album is not exist with given id: " + albumId)
         );
@@ -53,5 +54,15 @@ public class AlbumServiceImpl implements AlbumService {
         albumRepository.save(album);
         Album updatedAlbumObj = albumRepository.save(album);
         return AlbumMapper.mapToAlbumDto(updatedAlbumObj);
+    }
+
+    @Override
+    public void deleteAlbum(Long albumId) {
+
+        Album album = albumRepository.findById(albumId).orElseThrow(
+                () -> new ResourceNotFoundException("Album is not exist with given id: " + albumId)
+        );
+
+        albumRepository.deleteById(albumId);
     }
 }

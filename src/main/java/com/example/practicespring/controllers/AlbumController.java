@@ -43,4 +43,11 @@ public class AlbumController {
         AlbumDto albumDto = albumService.updateAlbum(albumId, updatedAlbum);
         return ResponseEntity.ok(albumDto);
     }
+
+    // Build Delete Album REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteAlbum(@PathVariable("id") Long albumId){
+        albumService.deleteAlbum(albumId);
+        return ResponseEntity.ok("Album deleted successfully.");
+    }
 }
