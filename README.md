@@ -3,5 +3,5 @@
 
 
 <p align="center">
-	<img width="300px" src="Scheme.png" alt="main">
+	<img width="900px" src="Scheme.png" alt="main">
 </p>
