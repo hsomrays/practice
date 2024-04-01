@@ -23,7 +23,7 @@ public class AlbumController {
     }
 
     // Build Get Album REST API
-    @GetMapping("{id}")
+    @GetMapping("find/{id}")
     public ResponseEntity<AlbumDto> getAlbumById(@PathVariable("id") Long albumId){
         AlbumDto albumDto = albumService.getAlbumById(albumId);
         return ResponseEntity.ok(albumDto);
@@ -37,7 +37,7 @@ public class AlbumController {
     }
 
     // Build Update Album REST API
-    @PutMapping("{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<AlbumDto> updateAlbum(@PathVariable("id") Long albumId,
                                                 @RequestBody AlbumDto updatedAlbum){
         AlbumDto albumDto = albumService.updateAlbum(albumId, updatedAlbum);
@@ -45,7 +45,7 @@ public class AlbumController {
     }
 
     // Build Delete Album REST API
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<String> deleteAlbum(@PathVariable("id") Long albumId){
         albumService.deleteAlbum(albumId);
         return ResponseEntity.ok("Album deleted successfully.");
