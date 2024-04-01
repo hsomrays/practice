@@ -19,24 +19,24 @@ public class DBFunctions {
         }
         return connection;
     }
-    public void createTable(Connection connection, String table_name) throws SQLException {
+    public void insertTable(Connection connection, String tableName, String columns, String values) throws SQLException {
         Statement statement = connection.createStatement();
         try {
-            String sql = "create table " + table_name + "(empid SERIAL, name varchar(200), address varchar(200),primary key(empid))";
+            String sql = "INSERT INTO " + tableName + "(" + columns + ")" + " VALUES (" + values + ")";
             statement.executeUpdate(sql);
-            System.out.println("Table created");
-        }catch (Exception e){
+            System.out.println("Record inserted");
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public void deleteTable(Connection connection, String table_name) throws SQLException {
+    public void deleteFromTable(Connection connection, String tableName, int entryId) throws SQLException {
         Statement statement = connection.createStatement();
         try {
-            String sql = "drop table public." + table_name + ";";
+            String sql = "DELETE FROM public." + tableName + " WHERE id = " + entryId;
             statement.executeUpdate(sql);
-            System.out.println("Table deleted");
-        }catch (Exception e){
+            System.out.println("Record deleted");
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
