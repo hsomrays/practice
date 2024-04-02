@@ -1,6 +1,7 @@
 package com.example.practicespring.controllers;
 
 import com.example.practicespring.dto.AlbumDto;
+import com.example.practicespring.entity.Album;
 import com.example.practicespring.service.AlbumService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,11 +38,18 @@ public class AlbumController {
     }
 
     // Build Update Album REST API
-    @PutMapping("update/{id}")
+
+/*    @PutMapping("update/{id}")
     public ResponseEntity<AlbumDto> updateAlbum(@PathVariable("id") Long albumId,
                                                 @RequestBody AlbumDto updatedAlbum){
         AlbumDto albumDto = albumService.updateAlbum(albumId, updatedAlbum);
         return ResponseEntity.ok(albumDto);
+    }*/
+    @PutMapping("update/{id}")
+    public ResponseEntity<Album> updateAlbum(@PathVariable("id") Long albumId,
+                                                @RequestBody Album updatedAlbum){
+        Album checkAlbum = albumService.updateAlbum(albumId, updatedAlbum);
+        return ResponseEntity.ok(checkAlbum);
     }
 
     // Build Delete Album REST API

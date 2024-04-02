@@ -1,15 +1,13 @@
 package com.example.practicespring.service;
 
 import com.example.practicespring.dto.AlbumDto;
-import com.example.practicespring.entity.Album;
 
 import java.util.List;
 
-public interface AlbumService {
+public interface RecordingStudioService {
     AlbumDto createAlbum(AlbumDto albumDto);
     AlbumDto getAlbumById(Long albumId);
     List<AlbumDto> getAllAlbums();
-    Album updateAlbum(Long albumId, Album updatedAlbum);
+    AlbumDto updateAlbum(Long albumId, AlbumDto updatedAlbum);
     void deleteAlbum(Long albumId);
-
 }

@@ -39,7 +39,7 @@ public class AlbumServiceImpl implements AlbumService {
                 .collect(Collectors.toList());
     }
 
-    @Override
+   /* @Override
     public AlbumDto updateAlbum(Long albumId, AlbumDto updatedAlbum) {
 
         Album album = albumRepository.findById(albumId).orElseThrow(
@@ -49,12 +49,32 @@ public class AlbumServiceImpl implements AlbumService {
         album.setTitle(updatedAlbum.getTitle());
         album.setReleaseDate(updatedAlbum.getReleaseDate());
         album.setGenre(updatedAlbum.getGenre());
-        album.setArtistId(updatedAlbum.getArtistId());
+        //album.setArtist(updatedAlbum.getArtist());
+        //album.setSongs(updatedAlbum.getSongs());
 
         albumRepository.save(album);
         Album updatedAlbumObj = albumRepository.save(album);
         return AlbumMapper.mapToAlbumDto(updatedAlbumObj);
+    }*/
+
+
+    @Override
+    public Album updateAlbum(Long albumId, Album updatedAlbum) {
+
+        Album album = albumRepository.findById(albumId).orElseThrow(
+                () -> new ResourceNotFoundException("Album is not exist with given id: " + albumId)
+        );
+
+        album.setTitle(updatedAlbum.getTitle());
+        album.setGenre(updatedAlbum.getGenre());
+        album.setReleaseDate(updatedAlbum.getReleaseDate());
+
+        albumRepository.save(album);
+        Album updatedAlbumObj = albumRepository.save(album);
+        return updatedAlbumObj;
     }
+
+
 
     @Override
     public void deleteAlbum(Long albumId) {

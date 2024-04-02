@@ -27,4 +27,7 @@ public class RecordingEngineer {
 
     private int rating;
 
+    @ManyToOne
+    @JoinColumn(name = "recording_studio_id")
+    private RecordingStudio recordingStudio;
 }

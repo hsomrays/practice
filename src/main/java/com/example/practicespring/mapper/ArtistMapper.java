@@ -10,7 +10,9 @@ public class ArtistMapper {
                 artist.getId(),
                 artist.getName(),
                 artist.getAge(),
-                artist.getArtistName()
+                artist.getRecordingStudios(),
+                artist.getArtistName(),
+                artist.getAlbums()
         );
     }
 
@@ -19,7 +21,9 @@ public class ArtistMapper {
                 artistDto.getId(),
                 artistDto.getName(),
                 artistDto.getAge(),
-                artistDto.getArtistName()
+                artistDto.getRecordingStudios(),
+                artistDto.getArtistName(),
+                artistDto.getAlbums()
         );
     }
 }

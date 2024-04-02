@@ -11,7 +11,8 @@ public class AlbumMapper {
                 album.getTitle(),
                 album.getReleaseDate(),
                 album.getGenre(),
-                album.getArtistId()
+                album.getArtist(),
+                album.getSongs()
         );
     }
 
@@ -21,7 +22,8 @@ public class AlbumMapper {
                 albumDto.getTitle(),
                 albumDto.getReleaseDate(),
                 albumDto.getGenre(),
-                albumDto.getArtistId()
+                albumDto.getArtist(),
+                albumDto.getSongs()
         );
     }
 }

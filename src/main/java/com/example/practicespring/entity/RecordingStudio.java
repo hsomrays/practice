@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,6 +29,12 @@ public class RecordingStudio {
     @Column(name = "number_of_employees")
     private int numberOfEmployees;
 
-    @Column(name = "recording_engineer_id")
-    private Long recordingEngineerId;
+    @ManyToMany
+    @JoinTable(name = "recording_studio_artist",
+            joinColumns = @JoinColumn(name = "recording_studio_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    private Set<Artist> artists = new HashSet<>();
+
+    @OneToMany(mappedBy = "recordingStudio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecordingEngineer> recordingEngineers;
 }

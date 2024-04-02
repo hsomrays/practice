@@ -1,6 +1,6 @@
-package com.example.practicespring.entity;
+package com.example.practicespring.dto;
 
-import jakarta.persistence.*;
+import com.example.practicespring.entity.Song;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,23 +11,12 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "producer")
-public class Producer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+public class ProducerDto {
     private Long id;
-
     private String name;
-
-    @Column(name = "work_experience")
     private int workExperience;
-
     private String company;
-
-    @ManyToMany(mappedBy = "producers")
     private Set<Song> songs = new HashSet<>();
 }

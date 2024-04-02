@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,9 +24,16 @@ public class Song {
 
     private String title;
 
-    @Column(name = "album_id")
-    private Date albumId;
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     private Time duration;
+
+    @ManyToMany
+    @JoinTable(name = "producer_song",
+            joinColumns = @JoinColumn(name = "song_id"),
+            inverseJoinColumns = @JoinColumn(name = "producer_id"))
+    private Set<Producer> producers = new HashSet<>();
 
 }
