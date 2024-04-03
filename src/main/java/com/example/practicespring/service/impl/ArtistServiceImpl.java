@@ -1,67 +1,56 @@
 package com.example.practicespring.service.impl;
 
-import com.example.practicespring.dto.ArtistDto;
 import com.example.practicespring.entity.Artist;
 import com.example.practicespring.exception.ResourceNotFoundException;
-import com.example.practicespring.mapper.ArtistMapper;
 import com.example.practicespring.repository.ArtistRepository;
 import com.example.practicespring.service.ArtistService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ArtistServiceImpl implements ArtistService {
-    private ArtistRepository artistRepository;
+    private final ArtistRepository artistRepository;
 
     @Override
-    public ArtistDto createArtist(ArtistDto artistDto) {
-        Artist artist = ArtistMapper.mapToArtist(artistDto);
-        Artist savedArtist = artistRepository.save(artist);
-        return ArtistMapper.mapToArtistDto(savedArtist);
+    public Artist createArtist(Artist artist) {
+        return artistRepository.save(artist);
     }
 
     @Override
-    public ArtistDto getArtistById(Long artistId) {
+    public Artist getArtistById(Long artistId) {
+        return artistRepository.findById(artistId)
+                .orElseThrow(() -> new ResourceNotFoundException("Artist does not exist with the given id: " + artistId));
+    }
+
+    @Override
+    public Artist getArtistByArtistName(String artistName) {
+        return artistRepository.findByArtistNameContainingIgnoreCase(artistName)
+                .orElseThrow(() -> new ResourceNotFoundException("Artist does not exist with the given name: " + artistName));
+    }
+
+    @Override
+    public List<Artist> getAllArtists() {
+        return artistRepository.findAll();
+    }
+
+    @Override
+    public Artist updateArtist(Long artistId, Artist updatedArtist) {
         Artist artist = artistRepository.findById(artistId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Artist is not exists with the given id:" + artistId));
-        return ArtistMapper.mapToArtistDto(artist);
-    }
-
-    @Override
-    public List<ArtistDto> getAllArtists() {
-        List<Artist> artists = artistRepository.findAll();
-        return artists.stream().map((artist -> ArtistMapper.mapToArtistDto(artist)))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public ArtistDto updateArtist(Long artistId, ArtistDto updatedArtist) {
-
-        Artist artist = artistRepository.findById(artistId).orElseThrow(
-                () -> new ResourceNotFoundException("Artist is not exist with given id: " + artistId)
-        );
+                .orElseThrow(() -> new ResourceNotFoundException("Artist does not exist with the given id: " + artistId));
 
         artist.setName(updatedArtist.getName());
-        artist.setAge(updatedArtist.getAge());
         artist.setArtistName(updatedArtist.getArtistName());
+        artist.setAge(updatedArtist.getAge());
+        artist.setRecordingStudios(updatedArtist.getRecordingStudios());
 
-        artistRepository.save(artist);
-        Artist updatedArtistObj = artistRepository.save(artist);
-        return ArtistMapper.mapToArtistDto(updatedArtistObj);
+        return artistRepository.save(artist);
     }
 
     @Override
     public void deleteArtist(Long artistId) {
-
-        Artist artist = artistRepository.findById(artistId).orElseThrow(
-                () -> new ResourceNotFoundException("Artist is not exist with given id: " + artistId)
-        );
-
         artistRepository.deleteById(artistId);
     }
 }

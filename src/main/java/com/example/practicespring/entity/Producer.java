@@ -1,5 +1,6 @@
 package com.example.practicespring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +30,6 @@ public class Producer {
     private String company;
 
     @ManyToMany(mappedBy = "producers")
+    @JsonIgnoreProperties("producers")
     private Set<Song> songs = new HashSet<>();
 }

@@ -1,6 +1,5 @@
 package com.example.practicespring.controllers;
 
-import com.example.practicespring.dto.AlbumDto;
 import com.example.practicespring.entity.Album;
 import com.example.practicespring.service.AlbumService;
 import lombok.AllArgsConstructor;
@@ -18,33 +17,27 @@ public class AlbumController {
 
     // Build Add Album REST API
     @PostMapping
-    public ResponseEntity<AlbumDto> createAlbum(@RequestBody AlbumDto albumDto){
-        AlbumDto savedAlbum = albumService.createAlbum(albumDto);
+    public ResponseEntity<Album> createAlbum(@RequestBody Album album){
+        Album savedAlbum = albumService.createAlbum(album);
         return new ResponseEntity<>(savedAlbum, HttpStatus.CREATED);
     }
 
     // Build Get Album REST API
     @GetMapping("find/{id}")
-    public ResponseEntity<AlbumDto> getAlbumById(@PathVariable("id") Long albumId){
-        AlbumDto albumDto = albumService.getAlbumById(albumId);
-        return ResponseEntity.ok(albumDto);
+    public ResponseEntity<Album> getAlbumById(@PathVariable("id") Long albumId){
+        Album album = albumService.getAlbumById(albumId);
+        return ResponseEntity.ok(album);
     }
 
     // Build Get All Albums REST API
     @GetMapping
-    public ResponseEntity<List<AlbumDto>> getAllAlbums(){
-        List<AlbumDto> albums = albumService.getAllAlbums();
+    public ResponseEntity<List<Album>> getAllAlbums(){
+        List<Album> albums = albumService.getAllAlbums();
         return ResponseEntity.ok(albums);
     }
 
     // Build Update Album REST API
 
-/*    @PutMapping("update/{id}")
-    public ResponseEntity<AlbumDto> updateAlbum(@PathVariable("id") Long albumId,
-                                                @RequestBody AlbumDto updatedAlbum){
-        AlbumDto albumDto = albumService.updateAlbum(albumId, updatedAlbum);
-        return ResponseEntity.ok(albumDto);
-    }*/
     @PutMapping("update/{id}")
     public ResponseEntity<Album> updateAlbum(@PathVariable("id") Long albumId,
                                                 @RequestBody Album updatedAlbum){

@@ -35,7 +35,5 @@ public class Album {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Song> songs;
 
 }

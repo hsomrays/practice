@@ -1,6 +1,8 @@
 package com.example.practicespring.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,9 +30,8 @@ public class Artist {
     private int age;
 
     @ManyToMany(mappedBy = "artists")
+    @JsonIgnoreProperties("artists")
     private Set<RecordingStudio> recordingStudios = new HashSet<>();
 
     private String artistName;
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Album> albums;
 }
