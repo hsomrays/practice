@@ -31,9 +31,8 @@ public class Album {
 
     private String genre;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_id")
     private Artist artist;
-
 
 }

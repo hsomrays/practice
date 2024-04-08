@@ -26,12 +26,6 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album getAlbumByTitle(String title) {
-        return albumRepository.findByTitleContainingIgnoreCase(title)
-                .orElseThrow(() -> new ResourceNotFoundException("Album does not exist with the given id: " + title));
-    }
-
-    @Override
     public List<Album> getAllAlbums() {
         return albumRepository.findAll();
     }

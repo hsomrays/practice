@@ -1,5 +1,6 @@
 package com.example.practicespring.service.impl;
 
+import com.example.practicespring.entity.Artist;
 import com.example.practicespring.entity.RecordingStudio;
 import com.example.practicespring.exception.ResourceNotFoundException;
 import com.example.practicespring.repository.RecordingStudioRepository;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -24,13 +26,6 @@ public class RecordingStudioServiceImpl implements RecordingStudioService {
         return recordingStudioRepository.findById(recordingStudioId)
                 .orElseThrow(() -> new ResourceNotFoundException("RecordingStudio does not exist with the given id: " + recordingStudioId));
     }
-
-    @Override
-    public RecordingStudio getRecordingStudioByStudioName(String studioName) {
-        return recordingStudioRepository.findByStudioNameContainingIgnoreCase(studioName)
-                .orElseThrow(() -> new ResourceNotFoundException("RecordingStudio does not exist with the given id: " + studioName));
-    }
-
 
     @Override
     public List<RecordingStudio> getAllRecordingStudios() {
@@ -53,4 +48,14 @@ public class RecordingStudioServiceImpl implements RecordingStudioService {
     public void deleteRecordingStudio(Long recordingStudioId) {
         recordingStudioRepository.deleteById(recordingStudioId);
     }
+
+    @Override
+    public List<Artist> getAllArtistsByRecordingStudioId(Long recordingStudioId) {
+        RecordingStudio recordingStudio = recordingStudioRepository.findById(recordingStudioId)
+                .orElseThrow(() -> new ResourceNotFoundException("RecordingStudio does not exist with the given id: " + recordingStudioId));
+
+        // Возвращаем список артистов из студии звукозаписи в виде множества
+        return recordingStudio.getArtists();
+    }
+
 }

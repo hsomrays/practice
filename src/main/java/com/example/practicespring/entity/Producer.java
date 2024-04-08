@@ -29,7 +29,7 @@ public class Producer {
 
     private String company;
 
-    @ManyToMany(mappedBy = "producers")
+    @ManyToMany(mappedBy = "producers", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("producers")
     private Set<Song> songs = new HashSet<>();
 }

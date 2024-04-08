@@ -25,7 +25,7 @@ public class Song {
 
     private String title;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id")
     private Album album;
 

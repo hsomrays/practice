@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -37,6 +38,6 @@ public class RecordingStudio {
             joinColumns = @JoinColumn(name = "recording_studio_id"),
             inverseJoinColumns = @JoinColumn(name = "artist_id"))
     @JsonIgnoreProperties("recordingStudios")
-    private Set<Artist> artists = new HashSet<>();
+    private List<Artist> artists;
 
 }
