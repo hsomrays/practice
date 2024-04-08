@@ -1,0 +1,22 @@
+<div class="dialog-container" [@modalAppear]>
+  <div class="dialog-container">
+    <div class="dialog-content">
+      <div>
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="artist.name" class="form-control" required>
+      </div>
+      <div>
+        <label>Age:</label>
+        <input type="number" [(ngModel)]="artist.age" class="form-control" required>
+      </div>
+      <div>
+        <label>Artist Name:</label>
+        <input type="text" [(ngModel)]="artist.artistName" class="form-control" required>
+      </div>
+      <div style="margin-top: 10px">
+        <button mat-raised-button color="primary" (click)="createArtist()">Save</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

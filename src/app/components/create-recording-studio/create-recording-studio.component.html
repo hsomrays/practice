@@ -1,0 +1,26 @@
+<div class="col-md-6 offset-md-3">
+<h3> Create Recording Studio </h3>
+
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label> Studio Name </label>
+    <input type="text" class="form-control" id = "studioName"
+      [(ngModel)] = "recordingStudio.studioName" name= "studioName">
+  </div>
+
+  <div class="form-group">
+    <label> Location </label>
+    <input type="text" class="form-control" id = "location"
+           [(ngModel)] = "recordingStudio.location" name= "location">
+  </div>
+
+  <div class="form-group">
+    <label> Number Of Employees </label>
+    <input type="number" class="form-control" id="numberOfEmployees"
+           [(ngModel)]="recordingStudio.numberOfEmployees" name="numberOfEmployees">
+  </div>
+
+  <button class="btn btn-success" type="submit"> Submit </button>
+
+</form>
+</div>

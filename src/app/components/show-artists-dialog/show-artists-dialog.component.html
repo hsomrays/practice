@@ -1,0 +1,31 @@
+<div class="dialog-content">
+  <button class="close-button" (click)="cancel()">Close</button>
+  <h2 style="text-align: center;">Artists for {{ data.recordingStudioName }}</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Artist Name</th>
+      <th>All Studios List</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artist of data.artists">
+      <td>{{ artist.name }}</td>
+      <td>{{ artist.age }}</td>
+      <td>{{ artist.artistName }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let studio of artist.allStudios">{{ studio }}</li>
+        </ul>
+      </td>
+      <td>
+        <button  (click)="openUpdateArtistDialog(artist)"  class="btn btn-info" style="margin-left: 10px">Change</button>
+        <button  (click)=" deleteArtist(artist.id, data.recordingStudioId)"  class="btn btn-danger" style="margin-left: 10px">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
