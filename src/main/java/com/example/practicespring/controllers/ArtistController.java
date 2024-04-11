@@ -20,28 +20,27 @@ import java.util.Optional;
 @RequestMapping("/api/artists")
 
 public class ArtistController {
+
     private ArtistService artistService;
     private ArtistRepository artistRepository;
 
     @PostMapping
-    public ResponseEntity<Artist> createArtist(@RequestBody Artist artist, @RequestParam(name = "recordingStudioId") Long recordingStudioId) {
+    public ResponseEntity<Artist> createArtist(@RequestBody Artist artist) {
         Artist savedArtist = new Artist();
         Optional<Artist> existingArtist = artistRepository.findFirstByNameAndAgeAndArtistName(artist.getName(), artist.getAge(), artist.getArtistName());
         if (existingArtist.isPresent()) {
-            savedArtist = existingArtist.get();
-            savedArtist = artistService.addRecordingStudio(savedArtist, recordingStudioId);
+            return new ResponseEntity<>(artist, HttpStatus.CONFLICT);
         } else {
-            savedArtist = artistService.createArtist(artist, recordingStudioId);
+            savedArtist = artistService.createArtist(artist);
         }
         return new ResponseEntity<>(savedArtist, HttpStatus.CREATED);
     }
 
 
     @GetMapping("{id}")
-    public ResponseEntity<ArtistDto> getArtistById(@PathVariable("id") Long artistId){
+    public ResponseEntity<Artist> getArtistById(@PathVariable("id") Long artistId){
         Artist artist = artistService.getArtistById(artistId);
-        ArtistDto artistDto = ArtistMapper.mapToArtistDto(artist);
-        return ResponseEntity.ok(artistDto);
+        return ResponseEntity.ok(artist);
     }
 
     @GetMapping("findByName/{artistName}")
@@ -52,24 +51,23 @@ public class ArtistController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ArtistDto>> getAllArtists(){
+    public ResponseEntity<List<Artist>> getAllArtists(){
         List<Artist> artists = artistService.getAllArtists();
-        List<ArtistDto> artistsDto = ArtistMapper.mapToArtistDtoList(artists);
-        return ResponseEntity.ok(artistsDto);
+        return ResponseEntity.ok(artists);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<Artist> updateArtist(@PathVariable("id") Long artistId,
-                                                                 @RequestBody Artist updatedArtist){
+                                               @RequestBody Artist updatedArtist){
         Artist checkArtist = artistService.updateArtist(artistId, updatedArtist);
         return ResponseEntity.ok(checkArtist);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteArtist(@PathVariable("id") Long artistId){
+    @DeleteMapping("{artistId}")
+    public ResponseEntity<?> deleteArtist(@PathVariable Long artistId) {
         artistService.deleteArtist(artistId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
-}
+    }

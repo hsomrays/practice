@@ -5,8 +5,7 @@ import com.example.practicespring.entity.Artist;
 import java.util.List;
 
 public interface ArtistService {
-    Artist createArtist(Artist artist, Long recordingStudioId);
-    Artist addRecordingStudio(Artist artist, Long recordingStudioId);
+    Artist createArtist(Artist artist);
     Artist getArtistById(Long artistId);
     Artist getArtistByArtistName(String artistName);
     List<Artist> getAllArtists();

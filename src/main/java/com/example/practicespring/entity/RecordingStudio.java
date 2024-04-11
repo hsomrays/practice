@@ -1,17 +1,13 @@
 package com.example.practicespring.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -33,7 +29,7 @@ public class RecordingStudio {
     @Column(name = "number_of_employees")
     private int numberOfEmployees;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "recording_studio_artist",
             joinColumns = @JoinColumn(name = "recording_studio_id"),
             inverseJoinColumns = @JoinColumn(name = "artist_id"))

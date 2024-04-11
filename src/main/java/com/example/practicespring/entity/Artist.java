@@ -1,9 +1,6 @@
 package com.example.practicespring.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +26,7 @@ public class Artist {
 
     private int age;
 
-    @ManyToMany(mappedBy = "artists")
+    @ManyToMany(mappedBy = "artists", cascade = {CascadeType.MERGE})
     @JsonIgnoreProperties("artists")
     private Set<RecordingStudio> recordingStudios = new HashSet<>();
 

@@ -33,12 +33,4 @@ public class RecordingStudioMapper {
         return dtoList;
     }
 
-/*    public static RecordingStudio mapToRecordingStudio(RecordingStudioDto recordingStudioDto){
-        return new RecordingStudio(
-                recordingStudioDto.getId(),
-                recordingStudioDto.getStudioName(),
-                recordingStudioDto.getLocation(),
-                recordingStudioDto.getNumberOfEmployees()
-        );
-    }*/
 }
