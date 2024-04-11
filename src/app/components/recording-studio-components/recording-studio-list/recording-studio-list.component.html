@@ -1,0 +1,27 @@
+<h2>Recording Studios List</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Studio Name</th>
+    <th>Location</th>
+    <th>Number Of Employees</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let recordingStudio of recordingStudios">
+    <tr>
+      <td>{{ recordingStudio.studioName }}</td>
+      <td>{{ recordingStudio.location }}</td>
+      <td>{{ recordingStudio.numberOfEmployees }}</td>
+      <td>
+        <button (click)="openUpdateRecordingStudioDialog(recordingStudio)" class="btn btn-info" style="margin-left: 10px">Edit</button>
+        <button (click)="showAllArtist(recordingStudio)" class="btn btn-info" style="margin-left: 10px">Add Artists</button>
+        <button (click)="showArtists(recordingStudio)" class="btn btn-info" style="margin-left: 10px">Show Artists</button>
+        <button (click)="deleteRecordingStudio(recordingStudio.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+<button (click)="openAddRecordingStudioDialog()" class="btn btn-info" style="margin-left: 10px">Add Studio</button>

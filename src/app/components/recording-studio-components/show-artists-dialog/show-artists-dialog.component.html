@@ -1,0 +1,26 @@
+<div class="dialog-content" [@modalAppear]>
+  <h2 style="text-align: center;">Artists for {{ data.recordingStudio.studioName }}</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Artist Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artist of data.recordingStudio.artists">
+      <td>{{ artist.name }}</td>
+      <td>{{ artist.age }}</td>
+      <td>{{ artist.artistName }}</td>
+      <td>
+        <button (click)=" deleteArtistFromRecordingStudio(artist, data.recordingStudio)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div style="margin-top: 10px; display: flex; justify-content: center;">
+    <button (click)="cancel()" class="btn btn-danger" style="margin-left: 10px">Close</button>
+  </div>
+</div>

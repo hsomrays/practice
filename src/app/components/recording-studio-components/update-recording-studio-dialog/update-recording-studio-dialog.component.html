@@ -1,0 +1,21 @@
+<div class="dialog-container" [@modalAppear]>
+  <div class="dialog-content">
+    <div>
+      <label>Studio Name:</label>
+      <input type="text" [(ngModel)]="recordingStudio.studioName" class="form-control" required>
+    </div>
+    <div>
+      <label>Location:</label>
+      <input type="text" [(ngModel)]="recordingStudio.location" class="form-control" required>
+    </div>
+    <div>
+      <label>Number Of Employees:</label>
+      <input type="number" [(ngModel)]="recordingStudio.numberOfEmployees" class="form-control" required>
+    </div>
+    <div style="margin-top: 10px; display: flex; justify-content: center;">
+      <button (click)="updateRecordingStudio()" class="btn btn-info" style="margin-left: 10px">Save</button>
+      <button (click)="cancel()" class="btn btn-danger" style="margin-left: 10px">Cancel</button>
+    </div>
+  </div>
+</div>
+

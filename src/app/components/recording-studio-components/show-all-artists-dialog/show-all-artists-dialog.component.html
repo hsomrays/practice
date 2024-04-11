@@ -1,0 +1,44 @@
+<div class="dialog-content" [@modalAppear]>
+  <h2 style="text-align: center;">Add Artists for {{ data.recordingStudio.studioName }}</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Artist Name</th>
+      <th>All Studio List</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artist of artists">
+      <td>{{ artist.name }}</td>
+      <td>{{ artist.age }}</td>
+      <td>{{ artist.artistName }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let studio of artist.recordingStudios">{{ studio.studioName }}</li>
+        </ul>
+      </td>
+      <td>
+      <td>
+        <button (click)="addArtistToRecordingStudio(artist, data.recordingStudio)" class="btn btn-info" style="margin-left: 10px">Add</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Всплывающее окно с ошибкой -->
+  <div class="error-dialog" *ngIf="showErrorDialog">
+    <div class="error-dialog-content">
+      <h4>Error</h4>
+      <p>{{ errorMessage }}</p>
+      <button (click)="closeErrorDialog()" class="btn btn-primary">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+  <button (click)="cancel()" class="btn btn-danger" style="margin-left: 10px">Close</button>
+</div>

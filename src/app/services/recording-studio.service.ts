@@ -1,38 +1,38 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RecordingStudio} from "../models/recording-studio";
-import {Artist} from "../models/artist";
+import {EnvironmentService} from "./environment.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecordingStudioService {
 
-  private baseURL = "http://localhost:8080/api/recordingStudios";
-  constructor(private httpClient: HttpClient) { }
+
+export class RecordingStudioService {
+  apiUrl?: string;
+  constructor(private httpClient: HttpClient,
+              private environmentService: EnvironmentService) {
+    this.apiUrl = this.environmentService.getValue('apiUrl') + '/recordingStudios';
+  }
 
   getRecordingStudiosList(): Observable<RecordingStudio[]>{
-    return this.httpClient.get<RecordingStudio[]>(`${this.baseURL}`);
+    return this.httpClient.get<RecordingStudio[]>(`${this.apiUrl}`);
   }
 
-  getArtistsList(id: number | undefined): Observable<Artist[]>{
-    return this.httpClient.get<Artist[]>(`${this.baseURL}/${id}/artists`);
-  }
-
-  createRecordingStudio(recordingStudio: RecordingStudio): Observable<RecordingStudio>{
-    return this.httpClient.post(`${this.baseURL}`, recordingStudio)
+  createRecordingStudio(recordingStudio: RecordingStudio): Observable<Object>{
+    return this.httpClient.post(`${this.apiUrl}`, recordingStudio)
   }
 
   getRecordingStudioById(id: number): Observable<RecordingStudio>{
-    return this.httpClient.get<RecordingStudio>(`${this.baseURL}/${id}`);
+    return this.httpClient.get<RecordingStudio>(`${this.apiUrl}/${id}`);
   }
 
-  updateRecordingStudio(id: number, recordingStudio: RecordingStudio): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, recordingStudio)
+  updateRecordingStudio(recordingStudio: RecordingStudio): Observable<Object>{
+    return this.httpClient.put(`${this.apiUrl}/${recordingStudio.id}`, recordingStudio)
   }
 
   deleteRecordingStudio(id: number | undefined): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
 }
