@@ -5,8 +5,8 @@ const HeaderComponent = () => {
     <div>
         <header>
             <nav className='navbar navbar-light bg-light'>
-                <a className="navbar-brand" href="http://localhost:3000/recordingStudios">Recording Studio</a>
-                <a className="navbar-brand" href="http://localhost:3000/artists">Artist</a>
+                <a className="navbar-brand" href="/recordingStudios">Recording Studio</a>
+                <a className="navbar-brand" href="/artists">Artist</a>
             </nav>
             
         </header>

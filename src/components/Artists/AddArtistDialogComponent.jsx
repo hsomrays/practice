@@ -17,11 +17,9 @@ const AddArtistDialogComponent = ({ onClose }) => {
     
     if (validateForm()) {
       const artist = { name, age, artistName };
-      console.log(artist);
 
       createArtist(artist)
         .then((response) => {
-          console.log(response.data);
           onClose();
         })
         .catch((error) => {

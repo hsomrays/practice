@@ -35,7 +35,6 @@ const ArtistComponent = () => {
   function delArtist(id) {
     deleteArtist(id)
         .then((response) => {
-          console.log(response.data);
           fetchArtists();
           onClose();
         })

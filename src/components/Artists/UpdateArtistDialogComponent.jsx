@@ -39,11 +39,9 @@ const UpdateArtistDialogComponent = ({ artistId, onClose }) => {
         artistName,
         recordingstudios
       };
-      console.log(updatedArtist);
       
       updateArtist(artistId, updatedArtist)
         .then((response) => {
-          console.log(response.data);
           onClose();
         })
         .catch((error) => {

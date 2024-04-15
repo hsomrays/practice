@@ -39,11 +39,9 @@ const UpdateRecordingStudioDialogComponent = ({ recordingStudioId, onClose }) =>
         numberOfEmployees,
         artists
       };
-      console.log(updatedRecordingStudio);
-      
+
       updateRecordingStudio(recordingStudioId, updatedRecordingStudio)
         .then((response) => {
-          console.log(response.data);
           onClose();
         })
         .catch((error) => {

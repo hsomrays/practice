@@ -35,7 +35,6 @@ const RecordingStudioComponent = () => {
   function delRecrodingStudio(id) {
     deleteRecordingStudio(id)
         .then((response) => {
-          console.log(response.data);
           fetchRecordingStudios();
           onClose();
         })

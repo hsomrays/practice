@@ -17,11 +17,9 @@ const AddRecordingStudioDialogComponent = ({ onClose }) => {
     
     if (validateForm()) {
       const recordingStudio = { studioName, location, numberOfEmployees };
-      console.log(recordingStudio);
 
       createRecordingStudio(recordingStudio)
         .then((response) => {
-          console.log(response.data);
           onClose();
         })
         .catch((error) => {
