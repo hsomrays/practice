@@ -6,7 +6,7 @@
 2. [JDBC](https://github.com/hsomrays/practice/tree/practice-jdbc) - создание консольного приложения (CRUD-операции) с использованием JDBC.
 3. [Backend на SpringBoot + Hibernate](https://github.com/hsomrays/practice/tree/practice-spring)
 4. [Angular - Frontend](https://github.com/hsomrays/practice/tree/practice-frontend-angular)
-5. React - Frontend
+5. [React - Frontend](https://github.com/hsomrays/practice/tree/practice-frontend-react)
 
 Оценка затраченного времени:
 
@@ -16,6 +16,6 @@
 | 2            | JDBC         | 12ч           | 12ч    |
 | 3            |  Backend     | 36ч           |  38   |
 | 4            | Angular      | 18ч      |  22   |
-| 5            | React        | 12ч      |     |
+| 5            | React        | 12ч      | 12    |
 
 
